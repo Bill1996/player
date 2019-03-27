@@ -28,9 +28,8 @@ public class Splash extends AppCompatActivity {
 
 
 
-        Integer time = 4000;    //设置等待时间，单位为毫秒
+        Integer time = 4000;
         Handler handler = new Handler();
-        //当计时结束时，跳转至主界面
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -41,19 +40,15 @@ public class Splash extends AppCompatActivity {
     }
 
     private void starAnimation(){
-        //从右下到左上
-        ObjectAnimator yuanAnimator = ObjectAnimator.ofFloat(circleImageView,"scaleX",
-                0,6000).setDuration(1000);
-        ObjectAnimator yuanAnimator2 = ObjectAnimator.ofFloat(circleImageView,"scaleY",
-                0,6000).setDuration(1000);
-        yuanAnimator.setInterpolator(new AccelerateInterpolator());//加速运动
-        yuanAnimator2.setInterpolator(new AccelerateInterpolator());//加速运动
+        ObjectAnimator circleAnimator = ObjectAnimator.ofFloat(circleImageView,"scaleX",
+                0,3000).setDuration(2000);
+        ObjectAnimator circleAnimator2 = ObjectAnimator.ofFloat(circleImageView,"scaleY",
+                3000,6000).setDuration(2000);
+        circleAnimator.setInterpolator(new AccelerateInterpolator());
+        circleAnimator2.setInterpolator(new AccelerateInterpolator());
         AnimatorSet animatorSet = new AnimatorSet();
-        //背景图片
         ObjectAnimator backGroudAnimator=ObjectAnimator.ofFloat(bgImageView,"alpha",
                 0,1).setDuration(1500);
-        //logo显示
-
         ObjectAnimator logoAnimatorAlpha=ObjectAnimator.ofFloat(logoImageView,"alpha",
                 0,1).setDuration(2500);
         ObjectAnimator logoAnimatorSclaeX= ObjectAnimator.ofFloat(logoImageView,"scaleX",
@@ -63,8 +58,8 @@ public class Splash extends AppCompatActivity {
 
 
         animatorSet
-                .play(yuanAnimator)
-                .with(yuanAnimator2)
+                .play(circleAnimator)
+                .with(circleAnimator2)
                 .before(backGroudAnimator)
                 .before(logoAnimatorAlpha)
                 .before(logoAnimatorSclaeX)
